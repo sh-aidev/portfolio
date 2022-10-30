@@ -1,4 +1,4 @@
-let custom_classes = {0: 'cheetah', 1: 'tiger', 2: 'fox', 3: 'wolf', 4: 'lion', 5: 'hyena'}
+let custom_classes = {0: 'cheetah', 1: 'fox', 2: 'hyena', 3: 'lion', 4: 'tiger', 5: 'wolf'}
 
 
 let imagenet_classes = {
