@@ -24,6 +24,8 @@
         $('#resnet34FieldUpload').val("");
         $('#error').text("");
         $('#success').html('');
+        $('#model-desc-p1').hide();
+        $('#model-desc-imagenet-p1').hide()
     });
 
     // Project 1 AWS Cold Start Button
@@ -110,6 +112,15 @@
         $('#aws-start-p1').show();
         $('#aws-caution').show();
         $('#success').html('');
+        $('#model-desc-p1').show();
+        $('#model-desc-imagenet-p1').hide()
+        if($(this).parents('.dropdown').find('span').text() == "Custom Resnet"){
+            $('#model-desc-text-p1').text("Custom Model was trained on ['cheetah', 'fox', 'hyena', 'lion', 'tiger', 'wolf'] - these class images");
+        }
+        else{
+            $('#model-desc-imagenet-p1').show()
+            $('#model-desc-text-p1').text("Pretrained Imagenet Model with 1000 class images.");
+        }
     });
     
     $('#resnet34FieldUpload').on('change', function() {

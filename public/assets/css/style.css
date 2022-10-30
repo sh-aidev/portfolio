@@ -10278,15 +10278,22 @@ h6,
     list-style: none
 }
 
-#p1, #p2, #btn-classify-p1, #loading-img-p1{
+#p1, #p2, #btn-classify-p1, #loading-img-p1, #model-desc-p1{
   display: none;
 }
 
-.caustion{
+.caution{
   width: 60%;
   margin-left: 20%;
   margin-right: 20%; 
   background-color: yellow;
+}
+.model-details{
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%; 
+  background-color: #6c6c6c;
+  color: #fff;
 }
 #error{
   color: var(--red);
