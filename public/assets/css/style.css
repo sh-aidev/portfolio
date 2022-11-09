@@ -9994,7 +9994,7 @@ h6,
   background-color: #495371 !important;
 }
 .skill-2 {
-  background-color: #FFE9A0 !important;
+  background-color: #FF8FB1 !important;
 }
 .skill-3 {
   background-color: #256D85 !important;
@@ -10003,7 +10003,7 @@ h6,
   background-color: #7895B2 !important;
 }
 .skill-5 {
-  background-color: #7D6E83 !important;
+  background-color: #FAD6A5 !important;
 }
 .skill-6 {
   background-color: #FD841F !important;
@@ -10278,7 +10278,7 @@ h6,
     list-style: none
 }
 
-#p1, #p2, #btn-classify-p1, #loading-img-p1, #model-desc-p1{
+#p1, #p2, #btn-classify-p1, #loading-img-p1, #model-desc-p1, #model-desc-imagenet-p1{
   display: none;
 }
 
