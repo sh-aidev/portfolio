@@ -1,12 +1,6 @@
 (function ($) {
     "use strict";
 
-    // Ripple Effect
-    // $(".full-landing-image").ripples({
-    //     resolution: 300,
-    //     perturbance: .004,
-    // });
-
     // Navbar on scrolling
     $(window).scroll(function () {
         if ($(this).scrollTop() > 200) {
@@ -58,7 +52,10 @@
             $('.scroll-to-bottom').fadeIn('slow');
         }
     });
-
+    $('.scroll-to-bottom').click(function () {
+        $('html, body').animate({scrollTop: $(this.hash).offset().top - 45}, 1500, 'easeInOutExpo');
+        return false;
+    });
 
     // Skills
     $('.skill').waypoint(function () {
