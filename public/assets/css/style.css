@@ -10064,7 +10064,7 @@ h6,
   text-align: center;
 }
 .portfolio-image{
-  width: 80%;
+  width: 100%;
 }
 .blog-image{
   width: 90%;
@@ -10087,9 +10087,9 @@ h6,
   .about-hireme-btn{
     text-align: left;
   }
-  .portfolio-image{
+  /* .portfolio-image{
     width: 100%;
-  }
+  } */
   .p1-image{
     width: 45rem;
   }
@@ -10112,9 +10112,9 @@ h6,
   .about-hireme-btn{
     text-align: left;
   }
-  .portfolio-image{
+  /* .portfolio-image{
     width: 100%;
-  }
+  } */
   .p1-image{
     width: 45rem;
   }
@@ -10138,9 +10138,9 @@ h6,
   .about-hireme-btn{
     text-align: left;
   }
-  .portfolio-image{
+  /* .portfolio-image{
     width: 100%;
-  }
+  } */
   .blog-image{
     width: 100%;
   }
@@ -10162,12 +10162,9 @@ h6,
     width: 60%;
     margin-bottom: 2rem;
   }
-  .portfolio-image{
+  /* .portfolio-image{
     width: 100%;
-  }
-  .portfolio-image{
-    width: 100%;
-  }
+  } */
   .blog-image{
     width: 80%;
   }
