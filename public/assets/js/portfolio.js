@@ -108,16 +108,22 @@
     $('.dropdown .dropdown-menu li').click(function () {
         $(this).parents('.dropdown').find('span').text($(this).text());
         $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
-        $('#btn-classify-p1').hide();
-        $('#aws-start-p1').show();
-        $('#aws-caution').show();
-        $('#success').html('');
-        $('#model-desc-p1').show();
+        $('#model-desc-p1').hide();
         $('#model-desc-imagenet-p1').hide()
         if($(this).parents('.dropdown').find('span').text() == "Custom Resnet"){
+            $('#btn-classify-p1').hide();
+            $('#aws-start-p1').show();
+            $('#aws-caution').show();
+            $('#success').html('');
+            $('#model-desc-p1').show();
             $('#model-desc-text-p1').text("Custom Model was trained on ['cheetah', 'fox', 'hyena', 'lion', 'tiger', 'wolf'] - these class images");
         }
-        else{
+        else if ($(this).parents('.dropdown').find('span').text() == "ResNet34" || $(this).parents('.dropdown').find('span').text() == "Inception V3" || $(this).parents('.dropdown').find('span').text() == "Mobilenet V2"){
+            $('#btn-classify-p1').hide();
+            $('#aws-start-p1').show();
+            $('#aws-caution').show();
+            $('#success').html('');
+            $('#model-desc-p1').show();
             $('#model-desc-imagenet-p1').show()
             $('#model-desc-text-p1').text("Pretrained Imagenet Model with 1000 class images.");
         }
