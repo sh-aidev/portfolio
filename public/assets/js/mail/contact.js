@@ -10,34 +10,34 @@
             dataType: "json", //the standard data type for most ajax requests
             statusCode: { //the status code from the POST request
                 0: function(data) { //0 is when Google gives a CORS error, don't worry it went through
-                //success
-                $('#success').html("<div class='alert alert-success'>");
-                $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                //success2
+                $('#success2').html("<div class='alert alert-success'>");
+                $('#success2 > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
-                $('#success > .alert-success')
+                $('#success2 > .alert-success')
                         .append("<strong>Your message has been sent. </strong>");
-                $('#success > .alert-success')
+                $('#success2 > .alert-success')
                         .append('</div>');
                 $('#contactForm').trigger("reset");
                 }, 
-                200: function(data) {//200 is a success code. it went through!
-                //success
-                $('#success').html("<div class='alert alert-success'>");
-                $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                200: function(data) {//200 is a success2 code. it went through!
+                //success2
+                $('#success2').html("<div class='alert alert-success'>");
+                $('#success2 > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
-                $('#success > .alert-success')
+                $('#success2 > .alert-success')
                         .append("<strong>Your message has been sent. </strong>");
-                $('#success > .alert-success')
+                $('#success2 > .alert-success')
                         .append('</div>');
                 $('#contactForm').trigger("reset");
                 },
                 403: function(data) {//403 is when something went wrong and the submission didn't go through
                 //error
-                $('#success').html("<div class='alert alert-danger'>");
-                $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
+                $('#success2').html("<div class='alert alert-danger'>");
+                $('#success2 > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
-                $('#success > .alert-danger').append($("<strong>").text("Sorry " + name + ", it seems that our mail server is not responding. Please try again later!"));
-                $('#success > .alert-danger').append('</div>');
+                $('#success2 > .alert-danger').append($("<strong>").text("Sorry " + name + ", it seems that our mail server is not responding. Please try again later!"));
+                $('#success2 > .alert-danger').append('</div>');
                 $('#contactForm').trigger("reset");
                 }
             }  
@@ -46,5 +46,5 @@
 
 
 $('#name').focus(function () {
-    $('#success').html('');
+    $('#success2').html('');
 });
