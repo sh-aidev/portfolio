@@ -1,4 +1,3 @@
-// import data from 'assets/js/imagenet_classes.json' assert { type: 'JSON' };
 (function ($) {
     "use strict";
 
@@ -21,7 +20,7 @@
         $('#drpdwn-p1').parents('.dropdown').find('input').attr('value', "");
         $('#drpdwn-p1').parents('.dropdown').find('span').text("Select Model");
         document.getElementById('idImage').src = "";
-        $('#resnet34FieldUpload').val("");
+        $('#resnetFieldUpload').val("");
         $('#error').text("");
         $('#success').html('');
         $('#model-desc-p1').hide();
@@ -30,22 +29,13 @@
 
     // Project 1 AWS Cold Start Button
     $('#aws-start-p1').on('click', function (event) {
-        if (($('#drpdwn-p1').parents('.dropdown').find('span').text()!="Select Model") && ($("#resnet34FieldUpload").val() != '')){
+        if (($('#drpdwn-p1').parents('.dropdown').find('span').text()!="Select Model") && ($("#resnetFieldUpload").val() != '')){
             $('#error').text("");
             $('#success').html('');
             let URL = null;
             switch ($('#drpdwn-p1').parents('.dropdown').find('span').text()) {
-                case "ResNet34":
-                    URL = 'https://8iy9xm49rf.execute-api.ap-south-1.amazonaws.com/dev/detect';
-                    break;
-                case "Inception V3":
-                    URL = 'https://q82h6jxzdb.execute-api.ap-south-1.amazonaws.com/dev/detect';
-                    break;
-                case "Mobilenet V2":
-                    URL = 'https://efgu87f9b5.execute-api.ap-south-1.amazonaws.com/dev/detect';
-                    break;
-                case "Custom Resnet":
-                    URL = 'https://x0emi4l3h9.execute-api.ap-south-1.amazonaws.com/dev/detect';
+                case "ResNet50":
+                    URL = 'https://qb1fnkzng7.execute-api.ap-south-1.amazonaws.com/default/infer';
                     break;
               }
             $('#loading-img-p1').fadeToggle(50);
@@ -59,14 +49,14 @@
                 $('#btn-back-p1').fadeToggle(1000);
             };
 
-            var fileInput = document.getElementById('resnet34FieldUpload').files;
+            var fileInput = document.getElementById('resnetFieldUpload').files;
             
             var file = fileInput[0];
             var filename = file.name;
         
             var formData = new FormData();
-            formData.append(filename, file);
-
+            formData.append('image', file);  // Using 'file' as key instead of filename
+    
             $.ajax({
                 async: true,
                 crossDomain: true,
@@ -74,22 +64,21 @@
                 url: URL,
                 data: formData,
                 processData: false,
-                contentType: false,
-                mimeType: "multipart/form-data"
+                contentType: false,  // Ensure FormData works correctly
             })
             .done(function (response) {
                 window.setTimeout( show_classify_section, 100 );
             })
             .fail(function() {window.setTimeout( show_classify_section, 30000 );}); 
         }else{
-            if (($('#drpdwn-p1').parents('.dropdown').find('span').text()=="Select Model") && ($("#resnet34FieldUpload").val() != '')){
+            if (($('#drpdwn-p1').parents('.dropdown').find('span').text()=="Select Model") && ($("#resnetFieldUpload").val() != '')){
                 $('#error').text("Please select a Model from Dropdown Menu");
                 
             }
-            else if (($("#resnet34FieldUpload").val() == '') && ($('#drpdwn-p1').parents('.dropdown').find('span').text()!="Select Model")){
+            else if (($("#resnetFieldUpload").val() == '') && ($('#drpdwn-p1').parents('.dropdown').find('span').text()!="Select Model")){
                 $('#error').text("Please choose a file to upload first");
             }
-            else if (($("#resnet34FieldUpload").val() == '') && ($('#drpdwn-p1').parents('.dropdown').find('span').text()=="Select Model")){
+            else if (($("#resnetFieldUpload").val() == '') && ($('#drpdwn-p1').parents('.dropdown').find('span').text()=="Select Model")){
                 $('#error').text("Please select a Model from Dropdown & choose a file to upload first");
             }
         }
@@ -110,15 +99,7 @@
         $(this).parents('.dropdown').find('input').attr('value', $(this).attr('id'));
         $('#model-desc-p1').hide();
         $('#model-desc-imagenet-p1').hide()
-        if($(this).parents('.dropdown').find('span').text() == "Custom Resnet"){
-            $('#btn-classify-p1').hide();
-            $('#aws-start-p1').show();
-            $('#aws-caution').show();
-            $('#success').html('');
-            $('#model-desc-p1').show();
-            $('#model-desc-text-p1').text("Custom Model was trained on ['cheetah', 'fox', 'hyena', 'lion', 'tiger', 'wolf'] - these class images");
-        }
-        else if ($(this).parents('.dropdown').find('span').text() == "ResNet34" || $(this).parents('.dropdown').find('span').text() == "Inception V3" || $(this).parents('.dropdown').find('span').text() == "Mobilenet V2"){
+        if ($(this).parents('.dropdown').find('span').text() == "ResNet50"){
             $('#btn-classify-p1').hide();
             $('#aws-start-p1').show();
             $('#aws-caution').show();
@@ -129,7 +110,7 @@
         }
     });
     
-    $('#resnet34FieldUpload').on('change', function() {
+    $('#resnetFieldUpload').on('change', function() {
         $('#success').html('');
         // An empty img element
         let demoImage = document.getElementById('idImage');
@@ -146,34 +127,19 @@
     $('#btn-classify-p1').on('click', function (event) {
         $('#error').text("");
         let URL = null;
-        let data_classes = null;
+        
         switch ($('#drpdwn-p1').parents('.dropdown').find('span').text()) {
-            case "ResNet34":
-                URL = 'https://8iy9xm49rf.execute-api.ap-south-1.amazonaws.com/dev/detect';
-                data_classes = imagenet_classes;
+            case "ResNet50":
+                URL = 'https://qb1fnkzng7.execute-api.ap-south-1.amazonaws.com/default/infer';
                 break;
-            case "Inception V3":
-                URL = 'https://q82h6jxzdb.execute-api.ap-south-1.amazonaws.com/dev/detect';
-                data_classes = imagenet_classes;
-                break;
-            case "Mobilenet V2":
-                URL = 'https://efgu87f9b5.execute-api.ap-south-1.amazonaws.com/dev/detect';
-                data_classes = imagenet_classes;
-                break;
-            case "Custom Resnet":
-                URL = 'https://x0emi4l3h9.execute-api.ap-south-1.amazonaws.com/dev/detect';
-                data_classes = custom_classes;
-                break;
-            }
-
-        var fileInput = document.getElementById('resnet34FieldUpload').files;
+        }
     
+        var fileInput = document.getElementById('resnetFieldUpload').files;
         var file = fileInput[0];
-        var filename = file.name;
-    
+        
         var formData = new FormData();
-        formData.append(filename, file);
-
+        formData.append('image', file);  // Using 'file' as key instead of filename
+    
         $.ajax({
             async: true,
             crossDomain: true,
@@ -181,26 +147,31 @@
             url: URL,
             data: formData,
             processData: false,
-            contentType: false,
-            mimeType: "multipart/form-data"
+            contentType: false,  // Ensure FormData works correctly
         })
         .done(function (response) {
-            console.log(response);
-            const pred = JSON.parse(response);
+            try {
+                console.log("Server response:", response);
+                // Remove JSON.parse since response is already an object
+                const pred = response;
 
-            const classes = data_classes;
-
-            $('#success').html("<div class='alert alert-success'>");
-            $('#success > .alert-success')
-                    .append("<strong>Predicted Class: "+ classes[pred.pridction.first.idx].toUpperCase() +"</strong>");
-            $('#success > .alert-success')
-                    .append('</div>');
+                // Access the predicted class
+                const predictedClass = pred.predicted;
+    
+                $('#success').html("<div class='alert alert-success'>");
+                $('#success > .alert-success')
+                        .append("<strong>Predicted Class: "+ predictedClass.toUpperCase() +"</strong>");
+                $('#success > .alert-success')
+                        .append('</div>');
+            } catch (e) {
+                console.error("Error parsing response:", e);
+            }
         })
         .fail(function() {
-                    $('#btn-classify-p1').hide();
-                    $('#aws-start-p1').show();
-                    $('#aws-caution').show();
-        });  
+            $('#btn-classify-p1').hide();
+            $('#aws-start-p1').show();
+            $('#aws-caution').show();
+        });
     });
 
 
