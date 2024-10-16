@@ -10198,6 +10198,12 @@ h6,
 
 }
 
+@media (min-width: 992px) {
+  .about-hireme-btn{
+    visibility: hidden;
+  }
+}
+
 .project-heading{
   margin-left: 1rem;
   min-width: 85%;
